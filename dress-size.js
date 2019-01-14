@@ -1,6 +1,17 @@
 jQuery(document).ready(function($) {
     console.log("ready!");
 
+	var modal = $("#sc-modal");
+	$("#sc-open-modal").click(function(e){
+		e.preventDefault();
+		modal.show();
+		refreshTable();
+	});
+	
+	$("#sc-close-modal").click(function(e){
+		e.preventDefault();
+		modal.hide();
+	});
     var sizes = [
       {"bodypart": "bust", "IN":[34,36,38,40], "CM": [86,91,96,102]},
       {"bodypart": "waist", "IN":[26,28,30,32], "CM": [66,71,76,81]},
@@ -12,6 +23,7 @@ jQuery(document).ready(function($) {
     var womanBust = $("#sc-woman-bust");
     var womanHips = $("#sc-woman-hips");
     var sizeTableBody  = $("#sc-size-table-body");
+	var scPanel = $("#sc-panel");
 
     var unit = "IN";
     var unitLabels = {"IN":"in", "CM": "cm"};
@@ -26,36 +38,60 @@ jQuery(document).ready(function($) {
       refreshTable();
     });
 
+    var selectedSizeCell = null;
+    var selectedImage = womanEmpty;
 
+	
+    var data_th = ['XS','S','M','L'];
     var refreshTable = function(){
       var tbody = "";
-      //  <tr id='sc-row-bust'><td>Bust</td><td>34 <small>in</small></td><td>36 <small>in</small></td><td>38 <small>in</small></td><td>40 <small>in</small></td></tr>
       for(var i=0; i<sizes.length;i++){
-        tbody += '<tr  id="sc-row-'+sizes[i].bodypart+'"><td>'+sizes[i].bodypart+'</td>';
+        tbody += '<tr  id="sc-row-'+sizes[i].bodypart+'"><td class="sc-bodypart-cell">'+sizes[i].bodypart+'</td>';
         for(var j=0; j<sizes[i][unit].length;j++)
-          tbody += '<td>'+sizes[i][unit][j]+' <small>'+unitLabels[unit]+'</small></td>';
+          tbody += '<td data-th="'+data_th[j]+'" id="sc_cell_'+i+'_'+j+'">'+sizes[i][unit][j]+'</td>';
         tbody += ' </td></tr>';
       }
 
       sizeTableBody.html(tbody);
-      $("#sc-row-waist").hover(function () { womanEmpty.hide(); womanWaist.show(); },
-      function () { womanWaist.hide(); womanEmpty.show(); });
-      $("#sc-row-bust").hover(function () { womanEmpty.hide(); womanBust.show();},
-        function () { womanBust.hide(); womanEmpty.show(); });
-      $("#sc-row-hips").hover(function () { womanEmpty.hide(); womanHips.show();},
-        function () { womanHips.hide(); womanEmpty.show(); });
-  
+      $("#sc-row-waist").hover(function () {  selectedImage.hide(); womanWaist.show(); },
+      function () { womanWaist.hide(); selectedImage.show(); });
+      $("#sc-row-bust").hover(function () {  selectedImage.hide(); womanBust.show();},
+        function () { womanBust.hide(); selectedImage.show(); });
+      $("#sc-row-hips").hover(function () { selectedImage.hide(); womanHips.show();},
+        function () { womanHips.hide();  selectedImage.show(); });
+
+		selectedImage.css("height",scPanel.height() +"px");
+		womanEmpty.css("height",scPanel.height() +"px");
+		womanWaist.css("height",scPanel.height() +"px");
+		womanBust.css("height",scPanel.height() +"px");
+		womanHips.css("height",scPanel.height() +"px");
+        $("#sc-size-table-body td").click(function(e){
+          $("#sc-size-table-body td").each(function(){
+            $(this).removeClass("size-selected");
+          });
+          $(this).addClass("size-selected");
+          selectedSizeCell = $(this).attr("id");
+    
+          if(selectedSizeCell.startsWith("sc_cell_0"))
+            selectedImage = womanBust;
+          else if(selectedSizeCell.startsWith("sc_cell_1"))
+            selectedImage = womanWaist;
+          else if(selectedSizeCell.startsWith("sc_cell_2"))
+            selectedImage = womanHips;
+          else
+			selectedImage = womanEmpty;
+		
+			selectedImage.css("height",scPanel.height() +"px");
+		
+          e.stopPropagation();
+        });
+    
+      if(selectedSizeCell!=null)
+       $("#"+selectedSizeCell).addClass("size-selected");
+
     };
 
     refreshTable();
 
     var currentSize = "";
-    $("#sc-size-table-body td").click(function(e){
-      $("#sc-size-table-body td").each(function(){
-        $(this).removeClass("size-selected");
-      });
-      $(this).addClass("size-selected");
-      e.stopPropagation();
-    });
-
 });
