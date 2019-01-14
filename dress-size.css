@@ -87,9 +87,5 @@ input:checked + .toggle .toggle__handler{width:56px;-webkit-transform:translateX
   #sc-panel-mobile  .sc-bodypart-col-size{text-align: left; font-weight: 700;}
   #sc-panel-mobile  .sc-bodypart-col-measure{text-align: right;}
 
-  .sc-bodypart-panel img {
-      max-height: 20em;
-  }
-
 }
 
