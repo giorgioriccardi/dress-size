@@ -5,13 +5,20 @@ jQuery(document).ready(function($) {
 	$("#sc-open-modal").click(function(e){
 		e.preventDefault();
 		modal.show();
-		refreshTable();
+    refreshTable();
+    createTableMobile();
+
 	});
 	
 	$("#sc-close-modal").click(function(e){
 		e.preventDefault();
 		modal.hide();
-	});
+  });
+  
+  $(document).keyup(function(e) {
+    if (e.keyCode === 27) $('#sc-close-modal').click();   // esc
+  });
+
     var sizes = [
       {"bodypart": "bust", "IN":[34,36,38,40], "CM": [86,91,96,102]},
       {"bodypart": "waist", "IN":[26,28,30,32], "CM": [66,71,76,81]},
@@ -23,7 +30,7 @@ jQuery(document).ready(function($) {
     var womanBust = $("#sc-woman-bust");
     var womanHips = $("#sc-woman-hips");
     var sizeTableBody  = $("#sc-size-table-body");
-	var scPanel = $("#sc-panel");
+	  var scPanel = $("#sc-panel");
 
     var unit = "IN";
     var unitLabels = {"IN":"in", "CM": "cm"};
@@ -60,11 +67,12 @@ jQuery(document).ready(function($) {
       $("#sc-row-hips").hover(function () { selectedImage.hide(); womanHips.show();},
         function () { womanHips.hide();  selectedImage.show(); });
 
-		selectedImage.css("height",scPanel.height() +"px");
-		womanEmpty.css("height",scPanel.height() +"px");
-		womanWaist.css("height",scPanel.height() +"px");
-		womanBust.css("height",scPanel.height() +"px");
-		womanHips.css("height",scPanel.height() +"px");
+      selectedImage.css("height",scPanel.height() +"px");
+      selectedImage.show();
+      womanEmpty.css("height",scPanel.height() +"px");
+      womanWaist.css("height",scPanel.height() +"px");
+      womanBust.css("height",scPanel.height() +"px");
+      womanHips.css("height",scPanel.height() +"px");
         $("#sc-size-table-body td").click(function(e){
           $("#sc-size-table-body td").each(function(){
             $(this).removeClass("size-selected");
@@ -91,7 +99,56 @@ jQuery(document).ready(function($) {
 
     };
 
-    refreshTable();
+    //refreshTable();
+    var createTableMobile = function(){
+      console.log("uunit", unit);
+      var html = "";
+ 
+      for(var i=0; i<sizes.length;i++){
+        html += '<div class="sc-bodypart-panel">';
+        html += '<div id="sc-bodypart-image-'+ sizes[i].bodypart +'"></div>';
+        html += '<table id="sc-bodypart-table-'+ sizes[i].bodypart +'" class="sc-bodypart-table"><thead><tr>';
+        html += '<th>'+ sizes[i].bodypart +'</th>';
+        html += '<th class="sc-bodypart-unit"><div class="toggleWrapper"><input class="dn" type="checkbox"  bodypart="'+ sizes[i].bodypart +'" id="sc-unit-toggle-'+ sizes[i].bodypart +'"/>';
+				html += '<label class="toggle" for="sc-unit-toggle-'+ sizes[i].bodypart +'"><span class="toggle__handler"></span></label></div></th>';
+        html += '</tr></thead>';
+        html += '<tbody id="sc-bodypart-tbody-'+ sizes[i].bodypart +'"></tbody>'
+        html += '</table></div>';
+
+
+      }
+      $("#sc-panel-mobile").html(html);
+      for(var i=0; i<sizes.length;i++){
+        var unitToggle = $("#sc-unit-toggle-"+ sizes[i].bodypart);
+        unitToggle.change(function() {
+          console.log("c",this);
+          createTableBodyMobile($(this).attr("bodypart"),  this.checked?"CM":"IN");
+        });
+
+        createTableBodyMobile(sizes[i].bodypart,unit);
+      }
+      for(var i=0; i<sizes.length;i++){
+        var bodypartpanel_height = $('#sc-bodypart-table-'+ sizes[i].bodypart).height();
+        var imgUrl = setting.pluginUrl + '/dress-size/assets/' + gen + '-' + sizes[i].bodypart +'.jpg';
+        $("#sc-bodypart-image-"+ sizes[i].bodypart).html('<img style="height: '+bodypartpanel_height+'px" src="'+imgUrl+'" />');
+      }
+    };
+
+    var createTableBodyMobile  = function(bodypart, bodyunit){
+      console.log("createTableBodyMobile", bodyunit, bodypart);
+
+      var tbody = "";
+      for(var i=0; i<sizes.length;i++){
+        if(sizes[i].bodypart == bodypart){
+          for(var j=0; j<sizes[i][unit].length;j++)
+            tbody += '<tr><td class="sc-bodypart-col-size">'+data_th[j]+'</td><td class="sc-bodypart-col-measure" id="sc_cell_'+i+'_'+j+'">'+sizes[i][bodyunit][j]+'</td></tr>';
+        }
+      }
+      console.log("tbody",tbody);
+      $('#sc-bodypart-tbody-'+bodypart).html(tbody);
+    };
+
+
 
     var currentSize = "";
 });
