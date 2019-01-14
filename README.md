@@ -1,29 +1,23 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+WordPress plugin to popup a size converting chart
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* WordPress
+* Version 1.7.1
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Install it as any other WordPress plugin
+* Configuration not required
 
 ### Contribution guidelines ###
 
 * Writing tests
 * Code review
-* Other guidelines
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Repo owner: https://github.com/giorgioriccardi
+* Other community or team contact: https://github.com/afranceschetti

@@ -1,10 +1,15 @@
 <?php
 /*
-Plugin Name: Dress Size
-Version: 1.7.0
-Description: Dress Size custom size chart table for Palu & AM Cashmere
+Plugin Name: Dress Size Conversion Chart
+Version: 1.7.1
+Description: Dress Size custom WordPress plugin to convert size inch/cm for Palu & AM Cashmere
 Author: Alessandro Franceschetti / Giorgio Riccardi
 Author URI: https://www.seatoskywebsolutions.ca/
+Requires at least: 3.0.0
+Tested up to: 5.0.3
+Requires PHP: 5.6 or >
+License: GPL v3
+Copyright © 2018, SSWS
 */
 
 function dress_size_scripts_basic(){

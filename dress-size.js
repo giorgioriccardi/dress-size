@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-    console.log("ready!");
+    console.log("Dress-size conversion chart ready!");
 
 	var modal = $("#sc-modal");
 	$("#sc-open-modal").click(function(e){
@@ -149,8 +149,6 @@ jQuery(document).ready(function($) {
       console.log("tbody",tbody);
       $('#sc-bodypart-tbody-'+bodypart).html(tbody);
     };
-
-
 
     var currentSize = "";
 });
