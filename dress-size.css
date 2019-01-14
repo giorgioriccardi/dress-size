@@ -1,0 +1,46 @@
+/*
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800|Reenie+Beanie');
+@font-face {
+    font-family: 'Berthold';
+    font-weight: normal;
+    font-style: normal;
+    src: url("http://live-artigianimilanesi.pantheonsite.io/wp-content/themes/customizr-pro-child/fonts/berthold_akzidenz_grotesk_be_extended-webfont.woff") format("woff"),
+         url("http://live-artigianimilanesi.pantheonsite.io/wp-content/themes/customizr-pro-child/fonts/berthold_akzidenz_grotesk_be_extended-webfont.woff2") format("woff2"); }
+}  */
+@import url('https://fonts.googleapis.com/css?family=Reenie+Beanie');
+body{font-family: 'Open Sans', sans-serif;}
+#sc-panel{display: flex; align-items: flex-start;position: relative;}
+#sc-panel h1, #sc-panel h2{font-family: Berthold;}
+#sc-panel .mute{color: #ccc;}
+#sc-size-panel{display: flex;flex-direction: column;align-items: stretch; }
+
+#sc-size-calc-panel{display: flex; padding: 0; }
+.sc-size-calc-wizard-step{padding:1em .5em; color: #ccc; border-right: 1px solid #ccc;}
+.sc-size-calc-wizard-step.active{border-bottom: solid 2px #333;color: #333; border-right: 0;}
+#sc-size-calc-content-column{padding: 1em;}
+.sc-size-calc-panel-inputs-item{  white-space: nowrap;}
+.sc-size-calc-hint{color: #aaa; text-align: center; font-family: 'Reenie Beanie', cursive; font-size: 1.6em;}
+#sc-size-calc-panel-inputs{display: grid;grid-template-columns: auto auto auto auto;grid-auto-columns: auto; grid-gap: 12px;}
+#sc-size-calc-panel input{ width: 4em; padding: .2em; text-align: center; border: solid  #FFCCCC; border-width: 0 0 2px 0}
+#sc-size-calc-panel input:focus{border: solid  #FFCCCC; border-width: 0 0 3px 0;outline-width: 0;}
+#sc-size-calc-panel .select{font-weight: 200; display: inline-block;margin: 0em;padding:0 .5em;}
+#sc-size-calc-panel .select:hover{background-color:#d1a7a7; color: white;}
+#sc-size-calc-panel .select-content{background-color:#FFCCCC; white-space: nowrap;}
+#sc-size-calc-panel .select-separator{ color: white;display: inline-block;}
+#sc-size-calc-panel .select:hover{cursor: pointer; font-weight: 400; }
+#sc-size-calc-panel .select.selected,#sc-size-calc-panel .select-separator.selected{ font-size: 1em;transition: all ease-in-out .4s;}
+#sc-size-calc-panel .select.unselected,#sc-size-calc-panel .select-separator.unselected{font-size: 0em; transition: all ease-in-out .4s; }
+#sc-size-calc-result-column{margin: 0 2em; text-align: center;}
+#sc-size-calc-result{font-weight: bold; color: #000; margin-bottom: 12px;}
+
+#sc-size-table{border-collapse: collapse; text-align: center; margin-bottom: 72px;}
+#sc-size-table th{font-size: 1.2em; font-weight: 400; padding: .5em; color: white;background-color:#aaa;}
+#sc-size-table tr th:first-child{text-align: left;}
+#sc-size-table thead tr:last-child{border-bottom: 2px solid #aaa;}
+#sc-size-table td{font-size: 1.2em;font-weight: 200; padding: .5em;}
+#sc-size-table tr td:first-child{font-weight: 400;text-align: left;}
+#sc-size-table td small{color:#aaa;font-size:.7em; font-weight: 400;}
+#sc-size-table tbody tr{border-bottom: 1px solid #ccc;}
+#sc-size-table tbody tr:hover td{background-color: #eee; cursor: pointer;}
+
+#sc-image-panel img{max-height: 100vh;}
