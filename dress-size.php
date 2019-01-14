@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Dress Size
-Version: 1.0
+Version: 1.4
 Description: Dress Size Desc
 Author: Alessandro Franceschetti / Giorgio Riccardi
 Author URI: https://www.seatoskywebsolutions.ca/
@@ -18,7 +18,7 @@ function dress_size_scripts_basic(){
 add_action( 'wp_enqueue_scripts', 'dress_size_scripts_basic' );
 
 function html_dress_size_code($gen) {
-	echo 	'<a href id="sc-open-modal">Size</a>
+	echo 	'<div class="woocommerce-dress-size"><a href id="sc-open-modal" class="woocommerce-dress-size-info" title="Size Chart">SIZE CHART</a></div>
 			<div id="sc-modal" class="sc-modal">
 				<div class="sc-modal-content">
 					<div id="sc-panel">
