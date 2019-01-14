@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Dress Size
-Version: 1.0
+Version: 1.6
 Description: Dress Size Desc
 Author: Alessandro Franceschetti / Giorgio Riccardi
 Author URI: https://www.seatoskywebsolutions.ca/

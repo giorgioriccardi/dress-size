@@ -93,7 +93,6 @@ jQuery(document).ready(function($) {
 		
           e.stopPropagation();
         });
-    
       if(selectedSizeCell!=null)
        $("#"+selectedSizeCell).addClass("size-selected");
 
@@ -107,13 +106,16 @@ jQuery(document).ready(function($) {
       for(var i=0; i<sizes.length;i++){
         html += '<div class="sc-bodypart-panel">';
         html += '<div id="sc-bodypart-image-'+ sizes[i].bodypart +'"></div>';
-        html += '<table id="sc-bodypart-table-'+ sizes[i].bodypart +'" class="sc-bodypart-table"><thead><tr>';
-        html += '<th>'+ sizes[i].bodypart +'</th>';
-        html += '<th class="sc-bodypart-unit"><div class="toggleWrapper"><input class="dn" type="checkbox"  bodypart="'+ sizes[i].bodypart +'" id="sc-unit-toggle-'+ sizes[i].bodypart +'"/>';
-				html += '<label class="toggle" for="sc-unit-toggle-'+ sizes[i].bodypart +'"><span class="toggle__handler"></span></label></div></th>';
-        html += '</tr></thead>';
+        html += '<div class="sc-bodypart"><div class="sc-bodypart-header">';
+        html += '  <div class="sc-bodypart-label">'+ sizes[i].bodypart +'</div>';
+        html += '  <div class="sc-bodypart-unit"><div class="toggleWrapper">';
+        html += '    <input class="dn" type="checkbox"  bodypart="'+ sizes[i].bodypart +'" id="sc-unit-toggle-'+ sizes[i].bodypart +'"/>';
+        html += '    <label class="toggle" for="sc-unit-toggle-'+ sizes[i].bodypart +'"><span class="toggle__handler"></span></label>';
+        html += '  </div>';
+        html += '</div></div>';
+        html += '<table id="sc-bodypart-table-'+ sizes[i].bodypart +'" class="sc-bodypart-table">';
         html += '<tbody id="sc-bodypart-tbody-'+ sizes[i].bodypart +'"></tbody>'
-        html += '</table></div>';
+        html += '</table></div></div>';
 
 
       }
@@ -128,7 +130,7 @@ jQuery(document).ready(function($) {
         createTableBodyMobile(sizes[i].bodypart,unit);
       }
       for(var i=0; i<sizes.length;i++){
-        var bodypartpanel_height = $('#sc-bodypart-table-'+ sizes[i].bodypart).height();
+        var bodypartpanel_height = $('.sc-bodypart'+ sizes[i].bodypart).height();
         var imgUrl = setting.pluginUrl + '/dress-size/assets/' + gen + '-' + sizes[i].bodypart +'.jpg';
         $("#sc-bodypart-image-"+ sizes[i].bodypart).html('<img style="height: '+bodypartpanel_height+'px" src="'+imgUrl+'" />');
       }
@@ -141,7 +143,7 @@ jQuery(document).ready(function($) {
       for(var i=0; i<sizes.length;i++){
         if(sizes[i].bodypart == bodypart){
           for(var j=0; j<sizes[i][unit].length;j++)
-            tbody += '<tr><td class="sc-bodypart-col-size">'+data_th[j]+'</td><td class="sc-bodypart-col-measure" id="sc_cell_'+i+'_'+j+'">'+sizes[i][bodyunit][j]+'</td></tr>';
+            tbody += '<tr><td class="sc-bodypart-col-size">'+data_th[j]+'</td><td class="sc-bodypart-col-measure">'+sizes[i][bodyunit][j]+'</td></tr>';
         }
       }
       console.log("tbody",tbody);
